@@ -55,9 +55,25 @@ form {
   cursor: pointer;
   font-size: 1.5rem;
   padding: 1rem 2rem;
+  position: relative;
 }
 .todos li i {
   float: right;
+}
+
+.fa-edit {
+  position: absolute;
+  right: 4rem;
+}
+
+.red {
+  color: red;
+}
+
+.todos li input {
+  float: left;
+  height: 25px;
+  margin-right: 15px;
 }
 
 .todos li.completed {
@@ -73,4 +89,8 @@ small {
 
 i {
   color: white;
+}
+
+.instructions {
+  margin: 15px 0;
 }

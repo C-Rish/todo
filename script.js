@@ -1,12 +1,12 @@
 const form = document.getElementById('form');
 const input = document.getElementById('input');
 const todosUL = document.getElementById('todos');
-const name = document.getElementById('personName');
+const name1 = document.getElementById('personName');
 const dateToday = document.getElementById('date');
 
 const todos = JSON.parse(localStorage.getItem('todos'));
-let person = prompt("Please enter your name:", "Harry Potter");
-name.innerText = person;
+// let person = prompt("Please enter your name:", "Harry Potter");
+// name1.innerText = person;
 
 var today = new Date();
 var date = today.getFullYear() + '/' + (today.getMonth()+1) + '/' + today.getDate();
@@ -33,22 +33,43 @@ function addTodo(todo){
     const todoEL = document.createElement('li');
     const icon = document.createElement('i');
     icon.classList.add("fas","fa-times-circle");
+    const editIcon = document.createElement('i');
+    editIcon.classList.add("fas","fa-edit");
+    const check = document.createElement('input');
+    check.setAttribute("type", "checkbox"); 
     
     if (todo && todo.completed) {
       todoEL.classList.add('completed');
     }
     todoEL.innerText = todoText;
 
-    todoEL.addEventListener('click', () => {
+    
+    check.addEventListener('change', () => {
       todoEL.classList.toggle('completed');
       updateLS();
     });
+    
+    
+    editIcon.addEventListener("click",()=>{
+      editIcon.classList.toggle('red');
+      todoEL.setAttribute("contentEditable","true");
 
+       todoEL.addEventListener("keypress",(e)=>{
+      if (e.key === "Enter")
+      todoEL.setAttribute("contentEditable","false");
+    });
+      updateLS();
+    });
+    
     icon.addEventListener('click', (e) =>  {
       e.preventDefault();
       todoEL.remove();
       updateLS();
     });
+   
+
+    todoEL.appendChild(check);
+    todoEL.appendChild(editIcon);
     todoEL.appendChild(icon);
     todosUL.appendChild(todoEL);
     input.value = '';

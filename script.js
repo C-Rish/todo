@@ -51,14 +51,15 @@ function addTodo(todo){
     
     
     editIcon.addEventListener("click",()=>{
-      editIcon.classList.toggle('red');
+      editIcon.classList.add('red');
       todoEL.setAttribute("contentEditable","true");
-
-       todoEL.addEventListener("keypress",(e)=>{
-      if (e.key === "Enter")
-      todoEL.setAttribute("contentEditable","false");
+      
+      todoEL.addEventListener("keypress",(e)=>{
+        if (e.key === "Enter")
+        todoEL.setAttribute("contentEditable","false");
+        editIcon.classList.remove('red');
     });
-      updateLS();
+      // updateLS();
     });
     
     icon.addEventListener('click', (e) =>  {
